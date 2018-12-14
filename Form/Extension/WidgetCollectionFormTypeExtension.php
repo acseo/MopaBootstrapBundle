@@ -1,11 +1,12 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Exception\InvalidConfigurationException;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\Exception\InvalidConfigurationException;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
 {
@@ -63,7 +64,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_remove_btn'] = $options['widget_remove_btn'];
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'omit_collection_item' => true === $this->options['render_collection_item'] ? false : true,
@@ -73,6 +74,6 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     }
     public function getExtendedType()
     {
-        return 'form';
+        return FormType::class;
     }
 }

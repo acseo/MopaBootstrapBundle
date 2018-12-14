@@ -1,12 +1,13 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabsType;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormFactoryInterface;
-use Mopa\Bundle\BootstrapBundle\Form\Type\TabsType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TabbedFormTypeExtension extends AbstractTypeExtension
 {
@@ -24,13 +25,13 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'form';
+        return FormType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'tabs_class' => $this->options['class'],

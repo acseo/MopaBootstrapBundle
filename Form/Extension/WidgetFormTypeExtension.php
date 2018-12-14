@@ -1,11 +1,12 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Exception\CreationException;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\Exception\CreationException;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WidgetFormTypeExtension extends AbstractTypeExtension
 {
@@ -48,7 +49,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_checkbox_label'] = $options['widget_checkbox_label'];
 
     }
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
@@ -68,21 +69,18 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'widget_checkbox_label' => $this->options['checkbox_label'],
             )
         );
-        $resolver->setAllowedValues(array(
-                'widget_type' => array(
-                    'inline',
-                    '',
-                ),
-                'widget_checkbox_label' => array(
-                    'label',
-                    'widget',
-                    'both',
-                )
-            )
-        );
+        $resolver->setAllowedValues('widget_type', array(
+            'inline',
+            '',
+        ));
+        $resolver->setAllowedValues('widget_checkbox_label',array(
+            'label',
+            'widget',
+            'both',
+        ));
     }
     public function getExtendedType()
     {
-        return 'form';
+        return FormType::class;
     }
 }

@@ -5,11 +5,11 @@ namespace Mopa\Bundle\BootstrapBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TabType extends AbstractType
 {
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'icon' => null,
@@ -20,7 +20,7 @@ class TabType extends AbstractType
     {
         $view->vars['icon'] = $options['icon'];
         $view->vars['tab_active'] = false;
-        
+
         $view->parent->vars['tabbed'] = true;
     }
 

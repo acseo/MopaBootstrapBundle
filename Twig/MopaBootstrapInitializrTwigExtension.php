@@ -62,7 +62,7 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension
             'diagnostic_mode'   => $diagnostic_mode
         );
     }
-    
+
     /**
      * Returns a list of functions to add to the existing list.
      *
@@ -71,10 +71,10 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'form_help' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            'form_help' => new \Twig_SimpleFunction('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
         );
     }
-    
+
     /**
      * Returns the name of the extension.
      *

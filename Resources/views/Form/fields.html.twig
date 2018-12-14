@@ -83,8 +83,8 @@
             {{ block('widget_addon') }}
         {% endif %}
         <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-            {% if empty_value is not none %}
-                <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+            {% if placeholder is not none %}
+                <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder|trans({}, translation_domain) }}</option>
             {% endif %}
             {% if preferred_choices|length > 0 %}
                 {% set options = preferred_choices %}
@@ -104,7 +104,7 @@
 
 {% block checkbox_widget %}
 {% spaceless %}
-{% if label is not sameas(false) and label is empty %}
+{% if label is not same as(false) and label is empty %}
     {% set label = name|humanize %}
 {% endif %}
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
@@ -241,7 +241,7 @@
 {% block form_label %}
 {% if 'checkbox' not in block_prefixes or widget_checkbox_label in ['label', 'both'] %}
 {% spaceless %}
-    {% if label is not sameas(false) %}
+    {% if label is not same as(false) %}
         {% if label is empty %}
             {% set label = name|humanize %}
         {% endif %}
