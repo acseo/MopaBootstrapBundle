@@ -18,7 +18,7 @@ class NavbarExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_Function('mopa_bootstrap_navbar', array($this, 'render'), array('is_safe' => array('html'))),
+            'mopa_bootstrap_navbar' => new \Twig_Function_Method($this, 'render', array('is_safe' => array('html'))),
         );
     }
 

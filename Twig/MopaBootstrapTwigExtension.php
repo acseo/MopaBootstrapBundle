@@ -48,8 +48,8 @@ class MopaBootstrapTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'form_help' => new \Twig_Function('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
-            'form_tabs' => new \Twig_Function('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            'form_help' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            'form_tabs' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
         );
     }
 
